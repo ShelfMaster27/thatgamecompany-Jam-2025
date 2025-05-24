@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://c146lyskpfkrt"]
+
+[ext_resource type="Shader" uid="uid://c0mmp75tofk6r" path="res://toon.gdshader" id="1_n0g3q"]
+
+[sub_resource type="Gradient" id="Gradient_n0g3q"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.504425, 1)
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n0g3q"]
+gradient = SubResource("Gradient_n0g3q")
+
+[sub_resource type="Gradient" id="Gradient_83bg7"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.504425, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4jur2"]
+gradient = SubResource("Gradient_83bg7")
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_856pg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_83bg7"]
+render_priority = 0
+shader = ExtResource("1_n0g3q")
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/texture_albedo = SubResource("Texture2DRD_856pg")
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_n0g3q")
+shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_4jur2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4jur2"]
+material = SubResource("ShaderMaterial_83bg7")
+
+[node name="ShaderTest" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_4jur2")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.0342366, 0.999414, 0, -0.999414, 0.0342366, 0, 0.775925, 0)
+spot_range = 0.882
