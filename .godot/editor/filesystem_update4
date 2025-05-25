@@ -1,4 +1,4 @@
-res://ShaderTest.tscn
-res://toon.gdshader
 res://TestGame.tscn
+res://toon.gdshader
 res://Player.gd
+res://ShaderTest.tscn
