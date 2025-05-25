@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://cdjkdsa7n8itp"]
+
+[ext_resource type="Shader" uid="uid://c0mmp75tofk6r" path="res://toon.gdshader" id="1_0vl6u"]
+[ext_resource type="Script" uid="uid://cxrpbhpftjpgg" path="res://Player.gd" id="1_spfbl"]
+
+[sub_resource type="Gradient" id="Gradient_n0g3q"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.498525, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_spfbl"]
+gradient = SubResource("Gradient_n0g3q")
+
+[sub_resource type="Gradient" id="Gradient_83bg7"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.510324, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fnh2o"]
+gradient = SubResource("Gradient_83bg7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_83bg7"]
+render_priority = 0
+shader = ExtResource("1_0vl6u")
+shader_parameter/albedo = Color(0, 0.678431, 0.6, 1)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_spfbl")
+shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_fnh2o")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tjhgi"]
+material = SubResource("ShaderMaterial_83bg7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4sbq"]
+render_priority = 0
+shader = ExtResource("1_0vl6u")
+shader_parameter/albedo = Color(0.919196, 0.374054, 0.482447, 1)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_spfbl")
+shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_fnh2o")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5dbfl"]
+material = SubResource("ShaderMaterial_l4sbq")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q7ydy"]
+
+[node name="TestGame" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="FirstIsland" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.71999, 0, 0, 0, 1.05116, 0, 0, 0, 7.07514, 0, 0, 0)
+mesh = SubResource("PlaneMesh_tjhgi")
+
+[node name="Player2" type="CharacterBody3D" parent="."]
+script = ExtResource("1_spfbl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player2"]
+transform = Transform3D(1.0004, 0, 0, 0, 1.0004, 0, 0, 0, 1.0004, 0, 1.04597, 0)
+mesh = SubResource("CapsuleMesh_5dbfl")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04597, 0)
+shape = SubResource("CapsuleShape3D_q7ydy")
+
+[node name="Camera3D" type="Camera3D" parent="Player2"]
+transform = Transform3D(-4.37114e-08, 0.34202, -0.939693, 0, 0.939693, 0.34202, 1, 1.49502e-08, -4.10753e-08, -5, 4, 0)
+current = true

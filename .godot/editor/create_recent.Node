@@ -1,2 +1,8 @@
-SpotLight3D
+CharacterBody3D
+Camera3D
+CollisionShape3D
 MeshInstance3D
+RigidBody3D
+DirectionalLight3D
+CSGSphere3D
+SpotLight3D

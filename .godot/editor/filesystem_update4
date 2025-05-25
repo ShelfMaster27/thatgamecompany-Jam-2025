@@ -1,2 +1,4 @@
 res://ShaderTest.tscn
 res://toon.gdshader
+res://TestGame.tscn
+res://Player.gd

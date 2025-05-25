@@ -1,51 +1,69 @@
-[gd_scene load_steps=9 format=3 uid="uid://c146lyskpfkrt"]
+[gd_scene load_steps=14 format=3 uid="uid://c146lyskpfkrt"]
 
 [ext_resource type="Shader" uid="uid://c0mmp75tofk6r" path="res://toon.gdshader" id="1_n0g3q"]
 
-[sub_resource type="Gradient" id="Gradient_n0g3q"]
+[sub_resource type="Gradient" id="Gradient_4jur2"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.504425, 1)
-colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.498525, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_n0g3q"]
-gradient = SubResource("Gradient_n0g3q")
+gradient = SubResource("Gradient_4jur2")
 
-[sub_resource type="Gradient" id="Gradient_83bg7"]
+[sub_resource type="Gradient" id="Gradient_856pg"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.504425, 1)
+offsets = PackedFloat32Array(0, 0.510324, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4jur2"]
-gradient = SubResource("Gradient_83bg7")
+gradient = SubResource("Gradient_856pg")
 
-[sub_resource type="Texture2DRD" id="Texture2DRD_856pg"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_83bg7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f8pcx"]
 render_priority = 0
 shader = ExtResource("1_n0g3q")
-shader_parameter/albedo = Color(0, 0, 0, 1)
-shader_parameter/texture_albedo = SubResource("Texture2DRD_856pg")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.0
-shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
-shader_parameter/specular = 0.0
-shader_parameter/metallic = 0.0
-shader_parameter/normal_scale = 1.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/albedo = Color(0, 0.678431, 0.6, 1)
 shader_parameter/color_gradient = SubResource("GradientTexture1D_n0g3q")
 shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_4jur2")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4jur2"]
+material = SubResource("ShaderMaterial_f8pcx")
+
+[sub_resource type="Gradient" id="Gradient_n0g3q"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.498525, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_spfbl"]
+gradient = SubResource("Gradient_n0g3q")
+
+[sub_resource type="Gradient" id="Gradient_83bg7"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.510324, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fnh2o"]
+gradient = SubResource("Gradient_83bg7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_83bg7"]
+render_priority = 0
+shader = ExtResource("1_n0g3q")
+shader_parameter/albedo = Color(0, 0.678431, 0.6, 1)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_spfbl")
+shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_fnh2o")
+
+[sub_resource type="SphereMesh" id="SphereMesh_n0g3q"]
 material = SubResource("ShaderMaterial_83bg7")
 
 [node name="ShaderTest" type="Node3D"]
 
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.109013, -0.668256, 0.735901, -0.944224, 0.301034, 0.13349, -0.310736, -0.680303, -0.6638, 1.48547, 1.15126, -1.89106)
+spot_range = 0.882
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.350364, 0, -0.465359)
 mesh = SubResource("PlaneMesh_4jur2")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 0.0342366, 0.999414, 0, -0.999414, 0.0342366, 0, 0.775925, 0)
-spot_range = 0.882
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.422717, 0.823159, -0.960682)
+mesh = SubResource("SphereMesh_n0g3q")
