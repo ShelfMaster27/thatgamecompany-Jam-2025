@@ -1,20 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdjkdsa7n8itp"]
+[gd_scene load_steps=12 format=3 uid="uid://cdjkdsa7n8itp"]
 
 [ext_resource type="Shader" uid="uid://c0mmp75tofk6r" path="res://toon.gdshader" id="1_0vl6u"]
 [ext_resource type="Script" uid="uid://cxrpbhpftjpgg" path="res://Player.gd" id="1_spfbl"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_spfbl"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_fnh2o"]
-sky_material = SubResource("ProceduralSkyMaterial_spfbl")
-
-[sub_resource type="Environment" id="Environment_l4sbq"]
-background_mode = 2
-sky = SubResource("Sky_fnh2o")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_n0g3q"]
 interpolation_mode = 1
@@ -55,9 +42,6 @@ material = SubResource("ShaderMaterial_l4sbq")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q7ydy"]
 
 [node name="TestGame" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_l4sbq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
