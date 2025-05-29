@@ -1,0 +1,44 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8sv21t0j3l6j"]
+
+[ext_resource type="PackedScene" uid="uid://bg8vhaquo1dog" path="res://Assets/tree.fbx" id="1_nn7b2"]
+[ext_resource type="Shader" uid="uid://c0mmp75tofk6r" path="res://toon.gdshader" id="2_n5sgu"]
+[ext_resource type="Texture2D" uid="uid://bcedkkbrsj431" path="res://Assets/color_gradient.tres" id="3_ckwx8"]
+[ext_resource type="Texture2D" uid="uid://did3p25l52we" path="res://Assets/fresnel_gradient.tres" id="4_4xhtm"]
+
+[sub_resource type="Gradient" id="Gradient_4jur2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.529052, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n0g3q"]
+gradient = SubResource("Gradient_4jur2")
+
+[sub_resource type="Gradient" id="Gradient_856pg"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.510324, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4jur2"]
+gradient = SubResource("Gradient_856pg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckwx8"]
+render_priority = 0
+shader = ExtResource("2_n5sgu")
+shader_parameter/albedo = Color(0.47291, 0.240049, 0.0280142, 1)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_n0g3q")
+shader_parameter/fresnel_gradient = SubResource("GradientTexture1D_4jur2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xhtm"]
+render_priority = 0
+shader = ExtResource("2_n5sgu")
+shader_parameter/albedo = Color(3.36915e-07, 0.700581, 0.348419, 1)
+shader_parameter/color_gradient = ExtResource("3_ckwx8")
+shader_parameter/fresnel_gradient = ExtResource("4_4xhtm")
+
+[node name="tree" instance=ExtResource("1_nn7b2")]
+
+[node name="Cylinder" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_ckwx8")
+
+[node name="Icosphere" parent="." index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_4xhtm")

@@ -1,4 +1,7 @@
-res://TestGame.tscn
+res://Assets/LowPolyTree.tscn
 res://toon.gdshader
-res://Player.gd
+res://Assets/color_gradient.tres
+res://Assets/fresnel_gradient.tres
+res://Assets/LowPolyIsland.tscn
+res://TestGame.tscn
 res://ShaderTest.tscn
